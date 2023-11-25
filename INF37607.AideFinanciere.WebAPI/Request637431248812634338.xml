@@ -1,0 +1,20 @@
+<Request xmlns:ns0="http://EAISolution.Request">
+  <Id>2</Id>
+  <OrderDate>2020-12-07T12:30:36.3656316</OrderDate>
+  <IsSubmitted>false</IsSubmitted>
+  <RequestItems>
+    <RequestItem>
+      <Id>2</Id>
+      <Description>Produit pas cher</Description>
+      <Quantity>4</Quantity>
+      <UnitPrice>10.00</UnitPrice>
+    </RequestItem>
+    <RequestItem>
+      <Id>3</Id>
+      <Description>Produit cher</Description>
+      <Quantity>1</Quantity>
+      <UnitPrice>1000.00</UnitPrice>
+    </RequestItem>
+  </RequestItems>
+  <Total>0</Total>
+</Request>

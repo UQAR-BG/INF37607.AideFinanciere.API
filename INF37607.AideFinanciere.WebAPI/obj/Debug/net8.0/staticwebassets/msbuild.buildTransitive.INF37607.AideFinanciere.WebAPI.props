@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/INF37607.AideFinanciere.WebAPI.props" />
+</Project>
