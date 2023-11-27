@@ -62,7 +62,7 @@ namespace EAISolutionFrontEnd.Infrastructure
         {
             return SpecificationEvaluator<T>.GetQuery(_EAISolutionFrontEndContext.Set<T>().AsQueryable(), spec);
         }
-
+     
     }
 }
 

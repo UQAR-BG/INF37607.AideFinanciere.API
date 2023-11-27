@@ -35,8 +35,8 @@ namespace EAISolutionFrontEnd.WebAPI.Controllers
         [HttpPost("registration")]
         public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
         {
-            userForRegisterDto.Email  = userForRegisterDto.Email.ToLower();
-            if (await _userService.GetUserByEmail(userForRegisterDto.Email) != null)
+            userForRegisterDto.SocialInsuranceNumber = userForRegisterDto.SocialInsuranceNumber.ToLower();
+            if (await _userService.GetUserByEmail(userForRegisterDto.SocialInsuranceNumber) != null)
                 return BadRequest("User already exists");
 
             var userToCreate = _mapper.Map<User>(userForRegisterDto);
@@ -63,7 +63,7 @@ namespace EAISolutionFrontEnd.WebAPI.Controllers
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, fakeUser.Id.ToString()),
-                new Claim(ClaimTypes.Name, fakeUser.Email)
+                new Claim(ClaimTypes.Name, fakeUser.SocialInsuranceNumber)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));

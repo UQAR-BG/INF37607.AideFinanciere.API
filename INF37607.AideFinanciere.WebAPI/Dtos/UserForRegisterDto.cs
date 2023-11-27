@@ -14,8 +14,8 @@ namespace EAISolutionFrontEnd.WebAPI.Dtos
         public string LastName { get; set; }
 
         [Required]
-        [DataType(DataType.EmailAddress, ErrorMessage = "Vous devez spécifier le bon format du courriel")]
-        public string Email { get; set; }
+        [StringLength(9, MinimumLength = 9, ErrorMessage = "Vous devez spécifier le bon format de votre numéro d'assurance social")]
+        public string SocialInsuranceNumber { get; set; }
         [Required]
         [StringLength(8, MinimumLength = 4, ErrorMessage = "Vous devez spécifier un mot de passe entre 4 et 8 caractères")]
         public string Password { get; set; }

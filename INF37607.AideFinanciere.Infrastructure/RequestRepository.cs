@@ -15,11 +15,5 @@ namespace EAISolutionFrontEnd.Infrastructure
         {
         }
 
-        public Task<Request> GetByIdWithRequestItemsAsync(int id)
-        {
-            return _EAISolutionFrontEndContext.Requests
-              .Include(r => r.RequestItems)
-              .FirstOrDefaultAsync(r => r.Id == id);
-        }
     }
 }
