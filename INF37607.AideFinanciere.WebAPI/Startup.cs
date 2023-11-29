@@ -127,9 +127,10 @@ namespace EAISolutionFrontEnd.WebAPI
 
             app.UseCors(x =>
             {
-                x.AllowAnyOrigin()
+                x.WithOrigins("http://localhost:3000")
                     .AllowAnyMethod()
-                    .AllowAnyHeader();
+                    .AllowAnyHeader()
+                    .AllowCredentials();
             });
 
             app.UseAuthentication();
