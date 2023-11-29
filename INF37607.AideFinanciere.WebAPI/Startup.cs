@@ -127,19 +127,18 @@ namespace EAISolutionFrontEnd.WebAPI
 
             app.UseCors(x =>
             {
-                x.WithOrigins("http://localhost:3001", "http://aide-financiere-ui.local:3001", "http://aide-financiere-ui.local")
-                    .AllowCredentials()
+                x.AllowAnyOrigin()
                     .AllowAnyMethod()
                     .AllowAnyHeader();
             });
 
             app.UseAuthentication();
-            app.UseAuthorization();
             
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
