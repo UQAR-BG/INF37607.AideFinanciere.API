@@ -19,7 +19,7 @@ using EAISolutionFrontEnd.Core.Services;
 
 namespace EAISolutionFrontEnd.WebAPI.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class FinancialAideController : ControllerBase

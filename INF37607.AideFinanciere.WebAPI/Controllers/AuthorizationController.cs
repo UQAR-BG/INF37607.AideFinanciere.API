@@ -14,6 +14,7 @@ using EAISolutionFrontEnd.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using EAISolutionFrontEnd.WebAPI.Dtos;
+using INF37607.AideFinanciere.WebAPI;
 
 namespace EAISolutionFrontEnd.WebAPI.Controllers
 {
@@ -41,6 +42,11 @@ namespace EAISolutionFrontEnd.WebAPI.Controllers
 
             var userToCreate = _mapper.Map<User>(userForRegisterDto);
 
+
+            Util util = new Util();
+            userToCreate.PermanentCode =  util.GenerateUniqueRandomString(9);
+
+
             var createdUser = await _userService.RegisterUser(userToCreate);
 
             var userToReturn = _mapper.Map<UserForDetailedDto>(createdUser);
@@ -53,17 +59,14 @@ namespace EAISolutionFrontEnd.WebAPI.Controllers
             var user = await _userService.AuthenticateUser(userForLoginDto.CodePermanent
                 .ToLower(), userForLoginDto.Password);
 
-            // if (user == null)
-            //     return Unauthorized();
-
-            // TODO Remove this. It's just a fake.
-            User fakeUser = new User("John", "Doe", userForLoginDto.CodePermanent, userForLoginDto.Password);
-            fakeUser.Id = 999;
+             if (user == null)
+                 return Unauthorized();
+            
             
             var claims = new[]
             {
-                new Claim(ClaimTypes.NameIdentifier, fakeUser.Id.ToString()),
-                new Claim(ClaimTypes.Name, fakeUser.SocialInsuranceNumber)
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.SocialInsuranceNumber)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
@@ -81,7 +84,7 @@ namespace EAISolutionFrontEnd.WebAPI.Controllers
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            var userToReturn = _mapper.Map<UserForListDto>(fakeUser);
+            var userToReturn = _mapper.Map<UserForListDto>(user);
 
             return Ok(new
             {

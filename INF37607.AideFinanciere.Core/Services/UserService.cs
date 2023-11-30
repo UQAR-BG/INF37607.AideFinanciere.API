@@ -30,16 +30,16 @@ namespace EAISolutionFrontEnd.Core.Services
 
         public async Task UpdateUser(User user)
         {
-            await _UserRepository.UpdateAsync(user);
+            await _UserRepository.UpdateByUserIdAsync(user);
         }
 
-        public async Task<User> GetUserByPermanentCode(string email)
+        public async Task<User> GetUserByPermanentCode(string code)
         {
-            return await _UserRepository.GetByEmailAsync(email);
+            return await _UserRepository.GetByPermanentCode(code);
         }
-        public async Task<User> AuthenticateUser(string email, string password)
+        public async Task<User> AuthenticateUser(string code, string password)
         {
-            User user = await _UserRepository.GetByEmailAsync(email);
+            User user = await _UserRepository.GetByPermanentCode(code);
             if (user != null)
                 if (user.Password == password) return user;
             return null;

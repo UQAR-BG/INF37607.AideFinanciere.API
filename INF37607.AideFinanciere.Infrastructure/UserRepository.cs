@@ -14,10 +14,25 @@ namespace EAISolutionFrontEnd.Infrastructure
         {
         }
 
-        public Task<User> GetByEmailAsync(string email)
+        public Task<User> GetByPermanentCode(string code)
         {
             return _EAISolutionFrontEndContext.Users
-              .FirstOrDefaultAsync(u => u.Email == email);
+              .FirstOrDefaultAsync(u => u.PermanentCode == code);
+        }
+        public async Task UpdateByUserIdAsync(User updatedUser)
+        {
+            var existingUser = await _EAISolutionFrontEndContext.Users
+               .FirstOrDefaultAsync(r => r.Id == updatedUser.Id);
+            existingUser.FirstName = updatedUser.FirstName;
+            existingUser.LastName = updatedUser.LastName;
+            existingUser.PhoneNumber = updatedUser.PhoneNumber;
+            existingUser.Email = updatedUser.Email;
+            existingUser.CorrespondenceAddress = updatedUser.CorrespondenceAddress;
+
+
+            _EAISolutionFrontEndContext.Users.Entry(existingUser).CurrentValues.SetValues(existingUser);
+
+            await _EAISolutionFrontEndContext.SaveChangesAsync();
         }
     }
 }

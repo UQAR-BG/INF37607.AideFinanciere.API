@@ -18,7 +18,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace EAISolutionFrontEnd.WebAPI.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class RequestController : ControllerBase

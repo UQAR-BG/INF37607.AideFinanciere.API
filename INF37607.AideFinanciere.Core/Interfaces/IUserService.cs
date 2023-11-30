@@ -13,7 +13,7 @@ namespace EAISolutionFrontEnd.Core.Interfaces
         Task<User> RegisterUser(User user);
 
         Task UpdateUser(User user);
-        Task<User> AuthenticateUser(string email, string password);
+        Task<User> AuthenticateUser(string CodePermanent, string password);
 
     }
 }
