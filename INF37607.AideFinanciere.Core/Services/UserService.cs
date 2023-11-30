@@ -33,7 +33,7 @@ namespace EAISolutionFrontEnd.Core.Services
             await _UserRepository.UpdateAsync(user);
         }
 
-        public async Task<User> GetUserByEmail(string email)
+        public async Task<User> GetUserByPermanentCode(string email)
         {
             return await _UserRepository.GetByEmailAsync(email);
         }

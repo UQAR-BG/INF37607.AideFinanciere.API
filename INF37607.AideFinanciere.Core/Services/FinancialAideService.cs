@@ -10,18 +10,18 @@ using EAISolutionFrontEnd.SharedKernel.Interfaces;
 
 namespace EAISolutionFrontEnd.Core.Services
 {
-    public class FinancialService : IFinancialAideService
+    public class FinancialAideService : IFinancialAideService
     {
         private readonly IFinancialAideRepository _FinancialAideRepository;
    
-        public FinancialService(IFinancialAideRepository financialAideRepository)
+        public FinancialAideService(IFinancialAideRepository financialAideRepository)
         {
             _FinancialAideRepository = financialAideRepository;
         }
 
-        public async Task<FinancialAide> GetFinancialAide(int userId)
+        public async Task<List<FinancialAide>> GetFinancialAide(int userId)
         {
-            return await _FinancialAideRepository.GetByIdAsync(userId);
+            return await _FinancialAideRepository.GetListByIdAsync(userId);
         }
         public async Task<List<FinancialAide>> GetFinancialAides(int userId)
         {

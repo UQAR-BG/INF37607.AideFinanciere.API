@@ -6,8 +6,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EAISolutionFrontEnd.WebAPI.Dtos
 {
-    public class RequestForRegisteredDto
+    public class RequestForRegistereDto
     {
+        public int UserId { get; set; }
         public string Email { get; set; }
         public string CorrespondenceAddress { get; set; }
         public string Citizenship { get; set; }

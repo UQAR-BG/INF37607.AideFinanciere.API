@@ -10,6 +10,7 @@ namespace EAISolutionFrontEnd.Infrastructure
     {
         public DbSet<Request> Requests { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<FinancialAide> FinancialAide { get; set; }
         public EAISolutionFrontEndContext(DbContextOptions options) : base(options) { }
 
     }

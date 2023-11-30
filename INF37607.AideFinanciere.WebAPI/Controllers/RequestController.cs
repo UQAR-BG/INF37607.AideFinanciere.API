@@ -18,7 +18,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace EAISolutionFrontEnd.WebAPI.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class RequestController : ControllerBase
@@ -47,7 +47,7 @@ namespace EAISolutionFrontEnd.WebAPI.Controllers
         }
 
         [HttpPost("requestRegistration")]
-        public async Task<IActionResult> SendRequest(RequestForRegisteredDto requestForRegisteredDto)
+        public async Task<IActionResult> SendRequest(RequestForRegistereDto requestForRegisteredDto)
         {
             var requestToCreate = _mapper.Map<Request>(requestForRegisteredDto);
             await _requestService.AddRequest(requestToCreate);
@@ -56,12 +56,13 @@ namespace EAISolutionFrontEnd.WebAPI.Controllers
         }
 
         [HttpPost("udapteRequest")]
-        public async Task<IActionResult> UdapteRequest(RequestForRegisteredDto requestForRegisteredDto)
+        public async Task<IActionResult> UdapteRequest(RequestForRegistereDto requestForRegisteredDto)
         {
 
             var requestToCreate = _mapper.Map<Request>(requestForRegisteredDto);
+       
             await _requestService.UpdateRequest(requestToCreate);
-
+            
             return Ok();
         }
 

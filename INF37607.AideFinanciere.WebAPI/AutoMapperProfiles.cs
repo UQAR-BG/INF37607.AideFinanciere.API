@@ -15,7 +15,9 @@ namespace EAISolutionFrontEnd.WebAPI
             CreateMap<UserForRegisterDto, User>();
             CreateMap<User, UserForDetailedDto>();
             CreateMap<Request, RequestForDetailedDto>();
-         
+            CreateMap<RequestForRegistereDto, Request>();
+            CreateMap<FinancialAide, FinancialAideForDetailedDto>();
+            CreateMap<FinancialAideForRegisterDto, FinancialAide>();
         }
     }
 }

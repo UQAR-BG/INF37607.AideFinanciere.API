@@ -15,10 +15,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using EAISolutionFrontEnd.WebAPI.Dtos;
 using Microsoft.AspNetCore.Authorization;
+using EAISolutionFrontEnd.Core.Services;
 
 namespace EAISolutionFrontEnd.WebAPI.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class FinancialAideController : ControllerBase
@@ -36,16 +37,26 @@ namespace EAISolutionFrontEnd.WebAPI.Controllers
         [HttpGet("getFinancialAide")]
         public async Task<IActionResult> GetRequest(int userId)
         {
-            List<FinancialAide> financialAide = await _financialAideService.GetFinancialAides(userId);
+            List<FinancialAide> financialAides = await _financialAideService.GetFinancialAides(userId);
 
-            if (financialAide == null)
-                return BadRequest("This user doesn't have a pending request");
+            if (financialAides == null || financialAides.Count == 0)
+            {
+                return BadRequest("No financial aid for this user");
+            }
 
-            var FinancialToReturn = _mapper.Map<FinancialForDetailedDto>(financialAide);
-          
-            return Ok(FinancialToReturn);
+            var financialAideToReturn = _mapper.Map<List<FinancialAideForDetailedDto>>(financialAides);
+
+            return Ok(financialAideToReturn);
         }
 
 
+        [HttpPost("PostFinancialAide")]
+        public async Task<IActionResult> SendRequest(FinancialAideForRegisterDto financialAideForRegistereDto)
+        {
+            var financialAideToCreate = _mapper.Map<FinancialAide>(financialAideForRegistereDto);
+            await _financialAideService.AddFinancialAide(financialAideToCreate);
+
+            return Ok();
+        }
     }
 }

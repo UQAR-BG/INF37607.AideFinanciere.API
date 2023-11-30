@@ -9,7 +9,7 @@ namespace EAISolutionFrontEnd.Core.Interfaces
     {
         Task<User> GetUserById(int id);
 
-        Task<User> GetUserByEmail(string email);
+        Task<User> GetUserByPermanentCode(string email);
         Task<User> RegisterUser(User user);
 
         Task UpdateUser(User user);

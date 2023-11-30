@@ -9,6 +9,7 @@ namespace EAISolutionFrontEnd.Core
 {
     public class Request : BaseEntity, IAggregateRoot
     {
+        public int UserId { get; set; }
         public User User { get; set; }
 
         public string Email { get; set; } = string.Empty;
@@ -29,12 +30,12 @@ namespace EAISolutionFrontEnd.Core
             // exigé par EF
         }
 
-        public Request(User user, string email, string correspondenceAddress, string citizenship, 
+        public Request(int userId, string email, string correspondenceAddress, string citizenship, 
             string immigrationCode, DateOnly dateStatus, string language, string institutionName,
             string institutionCode, string programmeCode, int creditsNumbers, string status,
              DateOnly statusStartingDate, float totalGrossIncome)
         {
-            User = user;
+            UserId = userId;
             Email = email;
             CorrespondenceAddress = correspondenceAddress;
             Citizenship = citizenship;
@@ -49,5 +50,6 @@ namespace EAISolutionFrontEnd.Core
             StatusStartingDate = statusStartingDate;
             TotalGrossIncome = totalGrossIncome;
         }
+
     }
 }

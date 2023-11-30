@@ -9,6 +9,7 @@ namespace EAISolutionFrontEnd.Core.Interfaces
 {
     public interface IRequestRepository : IAsyncRepository<Request>
     {
-        
+        Task<Request> GetByUserIdAsync(int UserId);
+        Task UpdateByUserIdAsync(Request request);
     }
 }

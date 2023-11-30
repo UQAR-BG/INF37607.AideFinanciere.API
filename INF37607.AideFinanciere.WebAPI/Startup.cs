@@ -52,6 +52,8 @@ namespace EAISolutionFrontEnd.WebAPI
             services.AddScoped<IRequestService, RequestService>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IFinancialAideRepository, FinancialAideRepository>();
+            services.AddScoped<IFinancialAideService, FinancialAideService>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {

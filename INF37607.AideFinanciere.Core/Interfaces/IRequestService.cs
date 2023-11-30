@@ -7,11 +7,10 @@ namespace EAISolutionFrontEnd.Core.Interfaces
 {
     public interface IRequestService
     {
-        Task<Request> GetRequest(int id);
+        Task<Request> GetRequest(int userid);
         Task<Request> AddRequest(Request request);
         Task UpdateRequest(Request request);
         Task DeleteRequest(Request request);
        
-
     }
 }

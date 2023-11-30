@@ -17,7 +17,7 @@ namespace EAISolutionFrontEnd.Infrastructure
 
         public async Task<List<FinancialAide>> GetListByIdAsync(int userId)
         {
-            return await _EAISolutionFrontEndContext.Set<FinancialAide>().Where(entity => entity.Id == userId).ToListAsync();
+            return await _EAISolutionFrontEndContext.Set<FinancialAide>().Where(entity => entity.UserId == userId).ToListAsync();
         }
     }
 }

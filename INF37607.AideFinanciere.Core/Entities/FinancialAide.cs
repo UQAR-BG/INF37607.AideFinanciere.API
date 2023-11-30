@@ -14,14 +14,20 @@ namespace EAISolutionFrontEnd.Core
         public string Type { get; set; }
         public float Amount { get; set; }
 
+        public int UserId { get; set; }
         public User User { get; set; }
 
-        public FinancialAide(DateOnly paymentDate, string type, float amount, User user)
+        public FinancialAide()
+        {
+            // exigé par EF
+        }
+
+        public FinancialAide(DateOnly paymentDate, string type, float amount, int userId)
         {
             PaymentDate = paymentDate;
             Type = type;
             Amount = amount;
-            User = user;    
+            UserId = userId;    
         }
     }
 }

@@ -20,7 +20,7 @@ namespace EAISolutionFrontEnd.Core.Services
 
         public async Task<Request> GetRequest(int userId)
         {
-            return await _RequestRepository.GetByIdAsync(userId);
+            return await _RequestRepository.GetByUserIdAsync(userId);
         }
         public async Task<Request> AddRequest(Request request)
         {
@@ -28,7 +28,7 @@ namespace EAISolutionFrontEnd.Core.Services
         }
         public async Task UpdateRequest(Request request)
         {
-            await _RequestRepository.UpdateAsync(request);
+            await _RequestRepository.UpdateByUserIdAsync(request);
         }
         public async Task DeleteRequest(Request request)
         {

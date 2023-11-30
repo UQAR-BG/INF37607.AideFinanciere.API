@@ -36,7 +36,7 @@ namespace EAISolutionFrontEnd.WebAPI.Controllers
         public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
         {
             userForRegisterDto.SocialInsuranceNumber = userForRegisterDto.SocialInsuranceNumber.ToLower();
-            if (await _userService.GetUserByEmail(userForRegisterDto.SocialInsuranceNumber) != null)
+            if (await _userService.GetUserByPermanentCode(userForRegisterDto.SocialInsuranceNumber) != null)
                 return BadRequest("User already exists");
 
             var userToCreate = _mapper.Map<User>(userForRegisterDto);

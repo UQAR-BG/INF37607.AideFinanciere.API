@@ -6,12 +6,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EAISolutionFrontEnd.WebAPI.Dtos
 {
-    public class FinancialAideForDetailedDto
+    public class FinancialAideForRegisterDto
     {
         public int UserId { get; set; }
         public DateOnly PaymentDate { get; set; }
         public string Type { get; set; }
         public float Amount { get; set; }
+        
 
     }
 }
