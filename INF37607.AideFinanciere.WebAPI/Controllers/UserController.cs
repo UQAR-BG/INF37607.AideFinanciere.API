@@ -36,17 +36,14 @@ namespace EAISolutionFrontEnd.WebAPI.Controllers
         }
 
 
-        [HttpGet("GetUserInfo")]
-        public async Task<IActionResult> GetUserInfo(int userId)
+        [HttpGet]
+        public async Task<IActionResult> GetInfo()
         {
-
-
-            User user = await _userService.GetUserById(userId);
-
-            if (user == null)
-            {
-                return BadRequest("This user dont exist.");
-            }
+            var codePermanentClaim = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
+            if (codePermanentClaim is null)
+                return BadRequest("This user does not exist.");
+            
+            User user = await _userService.GetUserByCodePermanent(codePermanentClaim.Value);
 
             var userToReturn = _mapper.Map<UserForDetailedDto>(user);
 
@@ -54,15 +51,19 @@ namespace EAISolutionFrontEnd.WebAPI.Controllers
 
         }
 
-        [HttpPost("updateUser")]
-        public async Task<IActionResult> UdapteRequest(UserForUpdatedDto userForUpdatedDto)
+        [HttpPatch]
+        public async Task<IActionResult> Update(UserForUpdatedDto userForUpdatedDto)
         {
+            var codePermanentClaim = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+            if (codePermanentClaim is null)
+                return BadRequest("This user does not exist.");
 
-            var userToUpdate = _mapper.Map<User>(userForUpdatedDto);
+            userForUpdatedDto.Id = Int32.Parse(codePermanentClaim.Value);
+            User userToUpdate = _mapper.Map<User>(userForUpdatedDto);
 
-            await _userService.UpdateUser(userToUpdate);
+            userToUpdate = await _userService.UpdateUser(userToUpdate);
 
-            return Ok();
+            return Ok(userToUpdate);
         }
     }
 }

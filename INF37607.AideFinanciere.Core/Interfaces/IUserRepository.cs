@@ -9,7 +9,8 @@ namespace EAISolutionFrontEnd.Core.Interfaces
 {
     public interface IUserRepository : IAsyncRepository<User>
     {
-        Task<User> GetByPermanentCode(string code); 
-        Task UpdateByUserIdAsync(User user);
+        Task<User> GetByNas(string nas);
+        Task<User> GetByCodePermanent(string codePermanent);
+        Task<User> UpdateByUserId(User user);
     }
 }

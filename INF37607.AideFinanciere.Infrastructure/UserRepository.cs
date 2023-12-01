@@ -14,12 +14,19 @@ namespace EAISolutionFrontEnd.Infrastructure
         {
         }
 
-        public Task<User> GetByPermanentCode(string code)
+        public async Task<User> GetByNas(string nas)
         {
-            return _EAISolutionFrontEndContext.Users
-              .FirstOrDefaultAsync(u => u.PermanentCode == code);
+            return await _EAISolutionFrontEndContext.Users
+              .FirstOrDefaultAsync(u => u.SocialInsuranceNumber == nas);
         }
-        public async Task UpdateByUserIdAsync(User updatedUser)
+        
+        public async Task<User> GetByCodePermanent(string codePermanent)
+        {
+            return await _EAISolutionFrontEndContext.Users
+                .FirstOrDefaultAsync(u => u.PermanentCode == codePermanent);
+        }
+        
+        public async Task<User> UpdateByUserId(User updatedUser)
         {
             var existingUser = await _EAISolutionFrontEndContext.Users
                .FirstOrDefaultAsync(r => r.Id == updatedUser.Id);
@@ -33,6 +40,8 @@ namespace EAISolutionFrontEnd.Infrastructure
             _EAISolutionFrontEndContext.Users.Entry(existingUser).CurrentValues.SetValues(existingUser);
 
             await _EAISolutionFrontEndContext.SaveChangesAsync();
+
+            return existingUser;
         }
     }
 }

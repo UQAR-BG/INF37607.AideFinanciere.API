@@ -32,20 +32,33 @@ namespace EAISolutionFrontEnd.WebAPI.Controllers
             _mapper = mapper;
         }
 
+        [HttpPost("validate")]
+        public async Task<IActionResult> Validate(UserForValidateDto userForValidateDto)
+        {
+            // ICI, il faudrait valider le NAS et sa correspondance avec la date de naissance
+            // auprès d'une source de données authoritative (un service externe par exemple), et
+            // retourner une erreur si la combinaison de données n'est pas valide.
+            
+            if (await _userService.GetUserByNas(userForValidateDto.SocialInsuranceNumber) != null)
+                return BadRequest("L'étudiant existe déjà.");
+            
+            return Ok(true);
+        }
 
         [HttpPost("registration")]
         public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
         {
-            userForRegisterDto.SocialInsuranceNumber = userForRegisterDto.SocialInsuranceNumber.ToLower();
-            if (await _userService.GetUserByPermanentCode(userForRegisterDto.SocialInsuranceNumber) != null)
+            // ICI, il faudrait valider le NAS et sa correspondance avec la date de naissance
+            // auprès d'une source de données authoritative (un service externe par exemple), et
+            // retourner une erreur si la combinaison de données n'est pas valide.
+            
+            if (await _userService.GetUserByNas(userForRegisterDto.SocialInsuranceNumber) != null)
                 return BadRequest("User already exists");
 
             var userToCreate = _mapper.Map<User>(userForRegisterDto);
 
-
             Util util = new Util();
             userToCreate.PermanentCode =  util.GenerateUniqueRandomString(9);
-
 
             var createdUser = await _userService.RegisterUser(userToCreate);
 
@@ -62,11 +75,10 @@ namespace EAISolutionFrontEnd.WebAPI.Controllers
              if (user == null)
                  return Unauthorized();
             
-            
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Name, user.SocialInsuranceNumber)
+                new Claim(ClaimTypes.Name, user.PermanentCode)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));

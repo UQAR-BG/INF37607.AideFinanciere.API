@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.RegularExpressions;
 using EAISolutionFrontEnd.SharedKernel;
 using EAISolutionFrontEnd.SharedKernel.Interfaces;
 
@@ -16,14 +13,14 @@ namespace EAISolutionFrontEnd.Core
         public string CorrespondenceAddress { get; set; } = string.Empty;
         public string Citizenship { get; set; } = string.Empty;
         public string ImmigrationCode { get; set; } = string.Empty;
-        public DateOnly DateStatus { get; set; }
+        public DateTime DateStatus { get; set; }
         public string Language { get; set; } = string.Empty;
         public string InstitutionName { get; set; } = string.Empty;
         public string InstitutionCode { get; set; } = string.Empty;
         public string ProgrammeCode { get; set; } = string.Empty;
         public int CreditsNumbers { get; set; }
         public string Status { get; set; } = string.Empty;
-        public DateOnly StatusStartingDate { get; set; }
+        public DateTime StatusStartingDate { get; set; }
         public float TotalGrossIncome { get; set; }
         public Request()
         {
@@ -31,9 +28,9 @@ namespace EAISolutionFrontEnd.Core
         }
 
         public Request(int userId, string email, string correspondenceAddress, string citizenship, 
-            string immigrationCode, DateOnly dateStatus, string language, string institutionName,
+            string immigrationCode, DateTime dateStatus, string language, string institutionName,
             string institutionCode, string programmeCode, int creditsNumbers, string status,
-             DateOnly statusStartingDate, float totalGrossIncome)
+            DateTime statusStartingDate, float totalGrossIncome)
         {
             UserId = userId;
             Email = email;

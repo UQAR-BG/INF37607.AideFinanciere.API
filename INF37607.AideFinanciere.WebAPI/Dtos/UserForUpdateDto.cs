@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace EAISolutionFrontEnd.WebAPI.Dtos
+﻿namespace EAISolutionFrontEnd.WebAPI.Dtos
 {
     public class UserForUpdatedDto
     {
@@ -13,6 +8,5 @@ namespace EAISolutionFrontEnd.WebAPI.Dtos
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string CorrespondenceAddress { get; set; }
-
     }
 }

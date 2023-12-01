@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using EAISolutionFrontEnd.SharedKernel;
 using EAISolutionFrontEnd.SharedKernel.Interfaces;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace EAISolutionFrontEnd.Core
 {
@@ -13,7 +10,7 @@ namespace EAISolutionFrontEnd.Core
         public string LastName { get; set; } = string.Empty;
         public string PermanentCode { get; set; } = string.Empty;
         public string SocialInsuranceNumber { get; set; } = string.Empty;
-        public DateOnly DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
         public string PhoneNumber { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string CorrespondenceAddress { get; set; } = string.Empty;

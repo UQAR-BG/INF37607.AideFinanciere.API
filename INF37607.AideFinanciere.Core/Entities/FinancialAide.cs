@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Text;
 using EAISolutionFrontEnd.SharedKernel;
 using EAISolutionFrontEnd.SharedKernel.Interfaces;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace EAISolutionFrontEnd.Core
 {
     public class FinancialAide : BaseEntity, IAggregateRoot
     {
-        public DateOnly PaymentDate { get; set; }
+        public DateTime PaymentDate { get; set; }
         public string Type { get; set; }
         public float Amount { get; set; }
 
@@ -22,7 +18,7 @@ namespace EAISolutionFrontEnd.Core
             // exigé par EF
         }
 
-        public FinancialAide(DateOnly paymentDate, string type, float amount, int userId)
+        public FinancialAide(DateTime paymentDate, string type, float amount, int userId)
         {
             PaymentDate = paymentDate;
             Type = type;
