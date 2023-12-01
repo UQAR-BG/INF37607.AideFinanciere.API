@@ -1,13 +1,14 @@
 ﻿using System;
 using EAISolutionFrontEnd.SharedKernel;
 using EAISolutionFrontEnd.SharedKernel.Interfaces;
+using INF37607.AideFinanciere.Core.Enums;
 
 namespace EAISolutionFrontEnd.Core
 {
     public class FinancialAide : BaseEntity, IAggregateRoot
     {
         public DateTime PaymentDate { get; set; }
-        public string Type { get; set; }
+        public FinancialAideType Type { get; set; }
         public float Amount { get; set; }
 
         public int UserId { get; set; }
@@ -18,7 +19,7 @@ namespace EAISolutionFrontEnd.Core
             // exigé par EF
         }
 
-        public FinancialAide(DateTime paymentDate, string type, float amount, int userId)
+        public FinancialAide(DateTime paymentDate, FinancialAideType type, float amount, int userId)
         {
             PaymentDate = paymentDate;
             Type = type;

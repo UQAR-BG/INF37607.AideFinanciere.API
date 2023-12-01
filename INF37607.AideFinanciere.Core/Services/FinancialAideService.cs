@@ -7,6 +7,7 @@ using System.Linq;
 using EAISolutionFrontEnd.Core.Interfaces;
 using EAISolutionFrontEnd.Core.Specifications;
 using EAISolutionFrontEnd.SharedKernel.Interfaces;
+using INF37607.AideFinanciere.Core.Enums;
 
 namespace EAISolutionFrontEnd.Core.Services
 {
@@ -18,14 +19,10 @@ namespace EAISolutionFrontEnd.Core.Services
         {
             _FinancialAideRepository = financialAideRepository;
         }
-
-        public async Task<List<FinancialAide>> GetFinancialAide(int userId)
+        
+        public async Task<List<FinancialAide>> GetFinancialAides(int userId, FinancialAideStatus status)
         {
-            return await _FinancialAideRepository.GetListByIdAsync(userId);
-        }
-        public async Task<List<FinancialAide>> GetFinancialAides(int userId)
-        {
-            return await _FinancialAideRepository.GetListByIdAsync(userId);
+            return await _FinancialAideRepository.GetListByIdAsync(userId, status);
         }
 
         public async Task<FinancialAide> AddFinancialAide(FinancialAide request)

@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using EAISolutionFrontEnd.Core;
 using EAISolutionFrontEnd.Core.Interfaces;
 using System.Linq;
+using INF37607.AideFinanciere.Core.Enums;
 
 namespace EAISolutionFrontEnd.Infrastructure
 {
@@ -15,7 +16,7 @@ namespace EAISolutionFrontEnd.Infrastructure
         {
         }
 
-        public async Task<List<FinancialAide>> GetListByIdAsync(int userId)
+        public async Task<List<FinancialAide>> GetListByIdAsync(int userId, FinancialAideStatus status)
         {
             return await _EAISolutionFrontEndContext.Set<FinancialAide>().Where(entity => entity.UserId == userId).ToListAsync();
         }

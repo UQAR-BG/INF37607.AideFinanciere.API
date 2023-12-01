@@ -1,6 +1,7 @@
 ﻿using System;
 using EAISolutionFrontEnd.SharedKernel;
 using EAISolutionFrontEnd.SharedKernel.Interfaces;
+using INF37607.AideFinanciere.Core.Enums;
 
 namespace EAISolutionFrontEnd.Core
 {
@@ -19,7 +20,7 @@ namespace EAISolutionFrontEnd.Core
         public string InstitutionCode { get; set; } = string.Empty;
         public string ProgrammeCode { get; set; } = string.Empty;
         public int CreditsNumbers { get; set; }
-        public string Status { get; set; } = string.Empty;
+        public FinancialAideStatus Status { get; set; } = FinancialAideStatus.Pending;
         public DateTime StatusStartingDate { get; set; }
         public float TotalGrossIncome { get; set; }
         public Request()
@@ -29,7 +30,7 @@ namespace EAISolutionFrontEnd.Core
 
         public Request(int userId, string email, string correspondenceAddress, string citizenship, 
             string immigrationCode, DateTime dateStatus, string language, string institutionName,
-            string institutionCode, string programmeCode, int creditsNumbers, string status,
+            string institutionCode, string programmeCode, int creditsNumbers, FinancialAideStatus status,
             DateTime statusStartingDate, float totalGrossIncome)
         {
             UserId = userId;

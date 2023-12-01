@@ -27,14 +27,11 @@ namespace EAISolutionFrontEnd.WebAPI.Controllers
     {
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
-        private readonly IConfiguration _config;
-        public UserController(IUserService userService, IConfiguration config, IMapper mapper)
+        public UserController(IUserService userService, IMapper mapper)
         {
             _userService = userService;
-            _config = config;
             _mapper = mapper;
         }
-
 
         [HttpGet]
         public async Task<IActionResult> GetInfo()
@@ -48,7 +45,6 @@ namespace EAISolutionFrontEnd.WebAPI.Controllers
             var userToReturn = _mapper.Map<UserForDetailedDto>(user);
 
             return Ok(userToReturn);
-
         }
 
         [HttpPatch]
