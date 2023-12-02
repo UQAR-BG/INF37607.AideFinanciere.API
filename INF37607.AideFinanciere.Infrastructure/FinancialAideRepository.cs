@@ -18,7 +18,9 @@ namespace EAISolutionFrontEnd.Infrastructure
 
         public async Task<List<FinancialAide>> GetListByIdAsync(int userId, FinancialAideStatus status)
         {
-            return await _EAISolutionFrontEndContext.Set<FinancialAide>().Where(entity => entity.UserId == userId).ToListAsync();
+            return await (from fa in _EAISolutionFrontEndContext.FinancialAide
+                join r in _EAISolutionFrontEndContext.Requests on fa.Id equals r.FinancialAidId
+                where r.UserId == userId && r.Status == status select fa).ToListAsync();
         }
     }
 }

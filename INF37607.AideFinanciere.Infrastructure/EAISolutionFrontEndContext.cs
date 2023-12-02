@@ -13,6 +13,23 @@ namespace EAISolutionFrontEnd.Infrastructure
         public DbSet<FinancialAide> FinancialAide { get; set; }
         public EAISolutionFrontEndContext(DbContextOptions options) : base(options) { }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Request>()
+                .HasKey(r => r.Id);
+            modelBuilder.Entity<Request>()
+                .HasOne(r => r.User)
+                .WithMany(u => u.Requests);
+            modelBuilder.Entity<Request>()
+                .HasOne(r => r.FinancialAid)
+                .WithOne();
+            
+            modelBuilder.Entity<User>()
+                .HasKey(r => r.Id);
+            
+            modelBuilder.Entity<FinancialAide>()
+                .HasKey(r => r.Id);
+        }
     }
 
 }

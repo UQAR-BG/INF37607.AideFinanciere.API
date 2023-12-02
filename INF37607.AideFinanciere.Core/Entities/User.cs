@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using EAISolutionFrontEnd.SharedKernel;
 using EAISolutionFrontEnd.SharedKernel.Interfaces;
 
@@ -15,6 +16,7 @@ namespace EAISolutionFrontEnd.Core
         public string Email { get; set; } = string.Empty;
         public string CorrespondenceAddress { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
+        public List<Request> Requests { get; set; } = new ();
         
         public User()
         {

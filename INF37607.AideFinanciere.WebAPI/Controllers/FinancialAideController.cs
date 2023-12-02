@@ -26,7 +26,7 @@ namespace EAISolutionFrontEnd.WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetClaims([FromQuery] FinancialAideStatus status = FinancialAideStatus.Completed)
+        public async Task<IActionResult> GetFinancialAids([FromQuery] FinancialAideStatus status = FinancialAideStatus.Completed)
         {
             var userIdClaim = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
             if (userIdClaim is null)
@@ -43,13 +43,13 @@ namespace EAISolutionFrontEnd.WebAPI.Controllers
         }
 
 
-        [HttpPost("PostFinancialAide")]
-        public async Task<IActionResult> SendRequest(FinancialAideForRegisterDto financialAideForRegistereDto)
-        {
-            var financialAideToCreate = _mapper.Map<FinancialAide>(financialAideForRegistereDto);
-            await _financialAideService.AddFinancialAide(financialAideToCreate);
-
-            return Ok();
-        }
+        // [HttpPost("PostFinancialAide")]
+        // public async Task<IActionResult> SendRequest(FinancialAideForRegisterDto financialAideForRegistereDto)
+        // {
+        //     var financialAideToCreate = _mapper.Map<FinancialAide>(financialAideForRegistereDto);
+        //     await _financialAideService.AddFinancialAide(financialAideToCreate);
+        //
+        //     return Ok();
+        // }
     }
 }

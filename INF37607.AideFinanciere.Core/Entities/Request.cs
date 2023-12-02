@@ -9,7 +9,8 @@ namespace EAISolutionFrontEnd.Core
     {
         public int UserId { get; set; }
         public User User { get; set; }
-
+        public int FinancialAidId { get; set; }
+        public FinancialAide FinancialAid { get; set; }
         public string Email { get; set; } = string.Empty;
         public string CorrespondenceAddress { get; set; } = string.Empty;
         public string Citizenship { get; set; } = string.Empty;
@@ -22,18 +23,19 @@ namespace EAISolutionFrontEnd.Core
         public int CreditsNumbers { get; set; }
         public FinancialAideStatus Status { get; set; } = FinancialAideStatus.Pending;
         public DateTime StatusStartingDate { get; set; }
-        public float TotalGrossIncome { get; set; }
+        public double TotalGrossIncome { get; set; }
         public Request()
         {
             // exigé par EF
         }
 
-        public Request(int userId, string email, string correspondenceAddress, string citizenship, 
+        public Request(int userId, int financialAidId, string email, string correspondenceAddress, string citizenship, 
             string immigrationCode, DateTime dateStatus, string language, string institutionName,
             string institutionCode, string programmeCode, int creditsNumbers, FinancialAideStatus status,
-            DateTime statusStartingDate, float totalGrossIncome)
+            DateTime statusStartingDate, double totalGrossIncome)
         {
             UserId = userId;
+            FinancialAidId = financialAidId;
             Email = email;
             CorrespondenceAddress = correspondenceAddress;
             Citizenship = citizenship;
