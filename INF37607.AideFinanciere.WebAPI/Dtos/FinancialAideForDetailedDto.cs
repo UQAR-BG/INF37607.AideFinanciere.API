@@ -7,7 +7,7 @@ namespace EAISolutionFrontEnd.WebAPI.Dtos
         public int Id { get; set; }
         public int UserId { get; set; }
         public DateTime PaymentDate { get; set; }
-        public string Type { get; set; }
+        public int Type { get; set; }
         public float Amount { get; set; }
     }
 }

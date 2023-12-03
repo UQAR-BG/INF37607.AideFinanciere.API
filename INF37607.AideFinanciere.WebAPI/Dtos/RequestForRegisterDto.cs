@@ -18,6 +18,5 @@ namespace EAISolutionFrontEnd.WebAPI.Dtos
         public string Status { get; set; }
         public DateTime StatusStartingDate { get; set; }
         public float TotalGrossIncome { get; set; }
-
     }
 }

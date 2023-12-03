@@ -9,7 +9,9 @@ namespace EAISolutionFrontEnd.Core.Interfaces
 {
     public interface IRequestRepository : IAsyncRepository<Request>
     {
-        Task<Request> GetByUserIdAsync(int UserId);
+        bool IsPendingRequest(int UserId);
+        Task<List<Request>> GetByUserIdAsync(int UserId);
+        Task<List<Request>> GetAllActiveByUserIdAsync(int UserId);
         Task UpdateByUserIdAsync(Request request);
     }
 }

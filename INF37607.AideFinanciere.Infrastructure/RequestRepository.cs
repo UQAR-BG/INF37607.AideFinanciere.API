@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using EAISolutionFrontEnd.Core;
 using EAISolutionFrontEnd.Core.Interfaces;
+using INF37607.AideFinanciere.Core.Enums;
 
 namespace EAISolutionFrontEnd.Infrastructure
 {
@@ -14,23 +15,43 @@ namespace EAISolutionFrontEnd.Infrastructure
         public RequestRepository(EAISolutionFrontEndContext eAISolutionFrontEndContext) : base(eAISolutionFrontEndContext)
         {
         }
-        public Task<Request> GetByUserIdAsync(int UserId)
+
+        public bool IsPendingRequest(int UserId)
         {
             return _EAISolutionFrontEndContext.Requests
-              .FirstOrDefaultAsync(u => u.UserId == UserId);
+                .Any(r => r.Status == FinancialAideStatus.Pending && r.UserId == UserId);
+        }
+
+        public async Task<List<Request>> GetByUserIdAsync(int UserId)
+        {
+            return await _EAISolutionFrontEndContext.Requests
+              .Where(r => r.UserId == UserId)
+              .ToListAsync();
+        }
+        
+        public async Task<List<Request>> GetAllActiveByUserIdAsync(int UserId)
+        {
+            return await _EAISolutionFrontEndContext.Requests
+                .Where(r => r.Status == FinancialAideStatus.Pending && r.UserId == UserId)
+                .ToListAsync();
         }
 
         public async Task UpdateByUserIdAsync(Request updatedRequest)
         {
-            var existingRequest = await _EAISolutionFrontEndContext.Requests
-                .FirstOrDefaultAsync(r => r.UserId == updatedRequest.UserId);
+            var existingRequest = (await GetAllActiveByUserIdAsync(updatedRequest.UserId)).FirstOrDefault();
 
             if (existingRequest == null)
-            {
-                await _EAISolutionFrontEndContext.Requests.AddAsync(updatedRequest);
                 return;
-            }
+            
             updatedRequest.Id = existingRequest.Id;
+
+            if (updatedRequest.FinancialAid != null)
+            {
+                await _EAISolutionFrontEndContext.FinancialAide.AddAsync(updatedRequest.FinancialAid);
+                await _EAISolutionFrontEndContext.SaveChangesAsync();
+
+                updatedRequest.FinancialAidId = updatedRequest.FinancialAid.Id;
+            }
             
             _EAISolutionFrontEndContext.Requests.Entry(existingRequest).CurrentValues.SetValues(updatedRequest);
 

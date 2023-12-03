@@ -9,7 +9,7 @@ namespace EAISolutionFrontEnd.Core
     {
         public int UserId { get; set; }
         public User User { get; set; }
-        public int FinancialAidId { get; set; }
+        public int? FinancialAidId { get; set; }
         public FinancialAide FinancialAid { get; set; }
         public string Email { get; set; } = string.Empty;
         public string CorrespondenceAddress { get; set; } = string.Empty;

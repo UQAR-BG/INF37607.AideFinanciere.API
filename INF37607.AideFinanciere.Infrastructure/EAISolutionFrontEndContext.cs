@@ -22,7 +22,8 @@ namespace EAISolutionFrontEnd.Infrastructure
                 .WithMany(u => u.Requests);
             modelBuilder.Entity<Request>()
                 .HasOne(r => r.FinancialAid)
-                .WithOne();
+                .WithOne()
+                .IsRequired(false);
             
             modelBuilder.Entity<User>()
                 .HasKey(r => r.Id);
