@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace EAISolutionFrontEnd.WebAPI.Dtos
 {
@@ -10,7 +11,7 @@ namespace EAISolutionFrontEnd.WebAPI.Dtos
         public string CorrespondenceAddress { get; set; }
         public string Citizenship { get; set; }
         public string ImmigrationCode { get; set; }
-        public DateTime DateStatus { get; set; }
+        public DateOnly DateStatus { get; set; }
         public string Language { get; set; }
         public string InstitutionName { get; set; }
         public string InstitutionCode { get; set; }
@@ -18,7 +19,7 @@ namespace EAISolutionFrontEnd.WebAPI.Dtos
         public int CreditsNumbers { get; set; }
         public string MaritalStatus { get; set; }
         public string Status { get; set; }
-        public DateTime StatusStartingDate { get; set; }
+        public DateOnly StatusStartingDate { get; set; }
         public float TotalGrossIncome { get; set; }
 
     }
