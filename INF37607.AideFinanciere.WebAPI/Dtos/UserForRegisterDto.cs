@@ -10,7 +10,7 @@ namespace EAISolutionFrontEnd.WebAPI.Dtos
         public string SocialInsuranceNumber { get; set; }
         
         [Required]
-        [StringLength(8, MinimumLength = 4, ErrorMessage = "Vous devez spécifier un mot de passe entre 4 et 8 caractères")]
+        [StringLength(32, MinimumLength = 4, ErrorMessage = "Vous devez spécifier un mot de passe entre 4 et 32 caractères")]
         public string Password { get; set; }
         
         [Required]
